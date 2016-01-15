@@ -11,8 +11,9 @@
 
 <head>
     <title>The World - @ViewBag.Title</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
 
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 
 </head>
@@ -32,7 +33,7 @@
     <div id="wrapper">
         <div id="main">
             <div>
-                <button id="sidebarToggle">Toggle Menu</button>
+                <button id="sidebarToggle" class="btn btn-primary">Toggle Menu</button>
             </div>
 
             <div>
@@ -41,14 +42,14 @@
 
         </div>
         <div id="footer">
-            &copy; 2015 The World Ltd.
+            <p class="test-primary">&copy; 2015 The World Ltd.</p>
         </div>
     </div>
 
-    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="~/js/site.js"></script>
     @RenderSection("Scripts", false)
-
 </body>
 
 </html>

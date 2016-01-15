@@ -1,21 +1,26 @@
 ﻿namespace TheWorld.Controllers.Web
 {
+    using System.Linq;
     using Microsoft.AspNet.Mvc;
+    using Models;
     using Services;
     using ViewModels;
 
     public class AppController : Controller
     {
         private readonly IMailService _mailService;
+        private readonly IWorldRepository _worldRepository;
 
-        public AppController(IMailService mailService)
+        public AppController(IMailService mailService, IWorldRepository worldRepository)
         {
             _mailService = mailService;
+            _worldRepository = worldRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var trips = _worldRepository.GetAllTrips();
+            return View(trips);
         }
 
         public IActionResult About()
