@@ -39,5 +39,29 @@ namespace TheWorld.Models
                 .OrderBy(t => t.Name).ToList();
         }
 
+        public void AddTrip(Trip newTrip)
+        {
+            _worldContext.Add(newTrip);
+        }
+
+        public bool SaveAll()
+        {
+            return _worldContext.SaveChanges() > 0;
+        }
+
+        public Trip GetTripByName(string tripName)
+        {
+            return _worldContext.Trips
+                .Include(t => t.Stops)
+                .FirstOrDefault(t => t.Name == tripName);
+        }
+
+        public void AddStop(string tripName, Stop newStop)
+        {
+            var theTrip = GetTripByName(tripName);
+            newStop.Order = theTrip.Stops.Max(s => s.Order) + 1;
+            theTrip.Stops.Add(newStop);
+            _worldContext.Stops.Add(newStop);
+        }
     }
 }
